@@ -41,6 +41,26 @@ Four paths, in order of difficulty:
 
 Most people only need the first two.
 
+## Your first 5 minutes
+
+**1. Create four lists in Apple Reminders:** `Captures`, `Knowledge`, `Goals`, `Projects`
+
+**2. Open Claude** (voice on iPhone, or Claude.ai in a browser)
+
+**3. Say something like:**
+
+> "I'm setting up Applaudé. I just read that the best way to build a habit is to attach it to something you already do. Can you save that as a knowledge atom?"
+
+Claude writes the atom to your Knowledge list — timestamped, structured, findable later.
+
+**4. Now ask for it back:**
+
+> "What do I know about habits?"
+
+That's the loop. Capture, retrieve, build.
+
+**Seed your brain fast:** See `references/starter-kit.md` for five paste-ready atoms that give your system an anchor from day one.
+
 ## Quick start (Claude Code)
 
 ```bash
@@ -57,6 +77,7 @@ Claude Code picks up the skill the next time you start a session. Say *"capture 
 | **[`docs/install.html`](docs/install.html)** | The install guide. Four paths, beginner to developer. Live at [davekatague.github.io/applaude](https://davekatague.github.io/applaude/install.html). |
 | **[`bridges/`](bridges/)** | Project instructions for each Claude surface — paste into Claude.ai, Desktop, or Claude Code. |
 | **[`configs/`](configs/)** | Example MCP config for Claude Desktop. |
+| **[`references/starter-kit.md`](references/starter-kit.md)** | Five paste-ready atoms to bootstrap your brain on day one. |
 | **[`references/`](references/)** | Schema, banked lessons, atom examples, desktop setup details. |
 | **[`CHANGELOG.md`](CHANGELOG.md)** | Project history, schema bumps, structural changes. |
 
