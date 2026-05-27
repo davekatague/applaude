@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Applaudé</title>
+<title>Applaudé — Install guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -541,6 +541,66 @@
   .footnotes p { margin-bottom: 4px; }
   .footnotes strong { color: var(--accent); }
 
+  /* ============== CAPTURE CARDS ============== */
+  .capture-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 40px 0;
+    max-width: var(--content-width);
+  }
+  .capture-card {
+    background: var(--paper-2);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  .capture-card .cc-header {
+    padding: 14px 20px;
+    background: rgba(15, 14, 12, 0.04);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .capture-card .cc-header .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .capture-card .cc-say {
+    padding: 18px 20px 10px;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+  .capture-card .cc-result {
+    padding: 10px 20px 18px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+  .capture-card .cc-result strong {
+    color: var(--accent);
+    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
   /* ============== RESULT BLOCK (knowledge graph reveal) ============== */
   .result-block {
     margin: 56px 0 0;
@@ -590,6 +650,30 @@
     margin-bottom: 12px;
     letter-spacing: 0;
   }
+
+  /* ============== AFTER BLOCK ============== */
+  .after-list {
+    list-style: none;
+    max-width: var(--content-width);
+    margin: 32px 0;
+  }
+  .after-list li {
+    padding: 18px 0 18px 48px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .after-list li:last-child { border-bottom: none; }
+  .after-list li .glyph {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .after-list li strong { color: var(--ink); font-weight: 600; }
 
   /* ============== TRIBUTE ============== */
   .tribute {
@@ -652,12 +736,14 @@
     .sec-title { font-size: 36px; }
     .picker-grid { grid-template-columns: 1fr 1fr; }
     .options { grid-template-columns: 1fr; }
+    .capture-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .hero h1 { font-size: 48px; }
     .hero .deck { font-size: 20px; }
     .sec-title { font-size: 30px; }
     .picker-grid { grid-template-columns: 1fr; }
+    .capture-grid { grid-template-columns: 1fr; }
   }
 
 </style>
@@ -688,24 +774,24 @@
   <section class="sec">
     <span class="sec-num">00 <span class="dot">·</span> Start here</span>
     <h2 class="sec-title">Sixty seconds <em>to your first win.</em></h2>
-    <p class="sec-deck">If this works, everything else will too. If it doesn't, fix this first.</p>
+    <p class="sec-deck">Confirm the foundation works before you go any further. If this works, everything else will too.</p>
 
     <div class="quickwin">
       <div class="label">The test</div>
-      <h3>Add a reminder by voice. See it on every device.</h3>
-      <p>You don't need to install anything for this. You're confirming the foundation works.</p>
+      <h3>Capture a thought by voice. See it on every device.</h3>
+      <p>You don't need to install anything yet. You're just confirming Apple's iCloud sync is on.</p>
       <ol>
-        <li>Open the Claude app on your iPhone. Tap voice mode.</li>
-        <li>Say: <em>"Add a reminder to buy milk."</em></li>
-        <li>Open the Reminders app on the same phone. The reminder should be there.</li>
-        <li>Open Reminders on your Mac or iPad. It should appear within a minute.</li>
+        <li>Open the Claude app on your iPhone. Tap the voice button.</li>
+        <li>Say: <em>"Add a reminder to my Captures list — I want to explore a voice-first second brain."</em></li>
+        <li>Open the Reminders app on the same phone. The note should be in a list called <strong>Captures</strong>.</li>
+        <li>Open Reminders on your Mac or iPad. It should appear within a minute, synced through iCloud.</li>
       </ol>
-      <p style="font-size: 14px; color: var(--ink-muted); margin-top: 16px; font-style: italic;">Tip: Applaudé will organise your captures into lists called <strong style="color: var(--ink);">Knowledge 🪎</strong>, <strong style="color: var(--ink);">Ideas 💡</strong>, <strong style="color: var(--ink);">Entities 🧱</strong>, and a few others. The lists already exist in Reminders — you'll see them populate as you use it.</p>
+      <p style="font-size: 14px; color: var(--ink-muted); margin-top: 16px; font-style: italic;">That list — <strong style="color:var(--ink);">Captures 📥</strong> — is your frictionless inbox. Everything goes in here first. Claude will help you process it.</p>
     </div>
 
     <div class="callout note">
       <strong>If it didn't sync</strong>
-      Settings → your name → iCloud → make sure Reminders is on, on every device. Most "Applaudé isn't working" problems are actually iCloud not turned on somewhere.
+      Settings → your name → iCloud → confirm Reminders is toggled on, on every device. About nine in ten "it isn't working" problems trace back to iCloud being off somewhere.
     </div>
   </section>
 
@@ -713,7 +799,7 @@
   <section class="sec">
     <span class="sec-num">01 <span class="dot">·</span> The four ways in</span>
     <h2 class="sec-title">Four doorways. <em>Pick one.</em></h2>
-    <p class="sec-deck">Most people only need the first two. Each one builds on the same foundation — you can add the others later, never lose anything along the way.</p>
+    <p class="sec-deck">Most people only need the first two. Each builds on the same foundation — you can add the others later and never lose anything along the way.</p>
 
     <div class="picker-grid">
       <div class="picker-card">
@@ -726,13 +812,13 @@
         <div class="num"><span class="pill">№ 02</span></div>
         <div class="name">Browser</div>
         <span class="diff easy">5 minutes</span>
-        <p class="desc">Claude.ai with the Apple Reminders connector turned on.</p>
+        <p class="desc">Claude.ai with the Apple Reminders connector. Wider screen, longer sessions.</p>
       </div>
       <div class="picker-card">
         <div class="num"><span class="pill">№ 03</span></div>
         <div class="name">Desktop</div>
         <span class="diff med">15 minutes</span>
-        <p class="desc">Mac app with a small Terminal install. Also unlocks Cowork.</p>
+        <p class="desc">Claude Desktop on Mac with a small Terminal install.</p>
       </div>
       <div class="picker-card">
         <div class="num"><span class="pill">№ 04</span></div>
@@ -743,8 +829,8 @@
     </div>
 
     <div class="callout note">
-      <strong>Starter pack</strong>
-      Phone for capture. Browser for everything else. That's all most people need. Add Desktop or Code only when something specific is missing.
+      <strong>Recommended starting point</strong>
+      Phone for capture on the go. Browser for everything else. That's all most people need — add Desktop or Claude Code only when something specific is missing.
     </div>
   </section>
 
@@ -754,12 +840,12 @@
   <section class="sec">
     <span class="sec-num">№ 01 <span class="dot">·</span> Mobile</span>
     <h2 class="sec-title">Already on your phone.</h2>
-    <p class="sec-deck">The Claude app on iPhone and iPad has three modes — voice, chat, and projects. All three talk to Reminders. Nothing to install.</p>
+    <p class="sec-deck">The Claude app has three modes — voice, chat, and projects. All three can read and write your Reminders. Nothing to install.</p>
 
     <div class="prose">
-      <p><strong>Voice.</strong> Tap the voice button. Speak. Reminders just works — Claude on iOS uses Apple's own EventKit, the same thing Siri uses. No connector to turn on.</p>
-      <p><strong>Chat.</strong> Turn voice off and you can type, paste, and upload files. Switch voice back on and the conversation continues with the file still in context.</p>
-      <p><strong>Projects.</strong> Inside a project on mobile, you can upload knowledge files once and every voice or chat conversation in that project can use them. This is where the system gets powerful.</p>
+      <p><strong>Voice.</strong> Tap the microphone. Speak. Reminders just works — Claude on iOS uses Apple's own EventKit, the same thing Siri uses. No connector to turn on, no permissions to change.</p>
+      <p><strong>Chat.</strong> Turn voice off and you can type, paste, and upload files. Switch voice back on and the conversation continues with the file still in context. Good for when you want to think something through slowly.</p>
+      <p><strong>Projects.</strong> Inside a Claude.ai project, knowledge files you upload once are available across every voice and chat conversation in that project. This is where the system gets deep — your second brain's operating manual loaded as permanent context.</p>
     </div>
 
     <div class="gif-slot">
@@ -768,12 +854,12 @@
       <div class="caption">Drop GIF here when recorded</div>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Try it</h3>
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Try it now</h3>
     <ol class="steps">
-      <li>Open the Claude app. Tap the voice button.</li>
-      <li>Say: <em>"Add an idea: a children's book about voice-first AI."</em></li>
-      <li>Open Reminders. The idea is captured in the <strong>Ideas</strong> list — Claude will speak about it as <strong>Ideas 💡</strong>.</li>
-      <li>Try chat mode next. Paste a paragraph and ask Claude to capture it as an idea. Same place, same elegance.</li>
+      <li>Open the Claude app. Tap the voice button to enter voice mode.</li>
+      <li>Say: <em>"Add a capture — I want to think about what I'd put in a second brain."</em></li>
+      <li>Open Reminders. The thought is in your <strong>Captures 📥</strong> list — your frictionless inbox.</li>
+      <li>Come back to Claude and ask: <em>"What's in my Captures right now?"</em> Claude reads it back and can help you decide what to do with it.</li>
     </ol>
   </section>
 
@@ -783,37 +869,40 @@
   <section class="sec">
     <span class="sec-num">№ 02 <span class="dot">·</span> Browser</span>
     <h2 class="sec-title">Claude.ai. <em>One click to connect.</em></h2>
-    <p class="sec-deck">Same Reminders, now in your browser. Five minutes. The connector is hosted by Anthropic, so there's nothing to install on your computer.</p>
+    <p class="sec-deck">Same Reminders, now in your browser. Five minutes. The connector is hosted by Anthropic — nothing to install on your computer.</p>
 
     <div class="prose">
-      <p>This is the workhorse surface. Use it for longer thinking, file uploads, planning, and anything that benefits from a wider screen than your phone.</p>
+      <p>This is the workhorse surface. Use it for longer thinking, planning, file uploads, and anything that benefits from a full screen. The Applaudé project lives here — it's your persistent second-brain interface, loaded with the operating manual Claude needs to structure your thoughts properly.</p>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Turn on the connector</h3>
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Turn on the Reminders connector</h3>
     <ol class="steps">
       <li>Go to <a href="https://claude.ai">claude.ai</a> and sign in.</li>
       <li>Open your profile menu → <strong>Connectors</strong>.</li>
       <li>Find <strong>Apple Reminders</strong> in the list and click <strong>Connect</strong>.</li>
-      <li>Approve the permission prompt. Allow access to your Reminders.</li>
-      <li>Open a new chat. Type: <em>"List my Reminders lists."</em> You should see them.</li>
+      <li>Approve the permission prompt on your Mac. Allow access to Reminders.</li>
+      <li>Open a new chat and type: <em>"List my Reminders lists."</em> You should see your lists come back.</li>
     </ol>
 
     <div class="gif-slot">
       <span class="icon">▶︎</span>
-      Screen recording — turning on the connector
+      Screen recording — turning on the Reminders connector
       <div class="caption">Drop GIF here when recorded</div>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install the Applaudé skill</h3>
-    <p class="prose" style="margin-bottom: 18px;">The skill teaches Claude how to structure information — so a person you mention becomes a linked entity, not just plain text. Five steps.</p>
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Create the Applaudé project</h3>
+    <p class="prose" style="margin-bottom: 18px;">The project is what gives Claude a persistent memory of how your system works. Without it, Claude treats every conversation as a blank slate.</p>
     <ol class="steps">
-      <li>In Claude.ai, create a new <strong>Project</strong>. Call it <code>Applaudé</code>.</li>
-      <li>Upload <code>SKILL.md</code> from the repo to project knowledge.</li>
-      <li>Paste the project instructions from <code>bridges/claudeai.md</code>.</li>
-      <li>Start a new chat inside that project.</li>
-    <div class="callout note" style="margin-top: 32px;">
-      <strong>A small elegance</strong>
-      Your Reminders lists are named in plain English (<code>Knowledge</code>, <code>Entities</code>, <code>Projects</code>) so they work across every Claude surface. When Claude talks about them, you'll see the decorated versions — <strong>Knowledge 🪎</strong>, <strong>Entities 🧱</strong>, <strong>Projects 🚧</strong>. Warmth in the experience, portability in the storage. Nobody notices the seam.
+      <li>In Claude.ai, click <strong>Projects</strong> in the sidebar → <strong>New project</strong>. Name it <code>Applaudé</code>.</li>
+      <li>In project knowledge, upload <code>SKILL.md</code> from the <a href="https://github.com/davekatague/applaude">repo</a>. This is the operating manual.</li>
+      <li>Open project settings → paste the contents of <code>bridges/claudeai.md</code> as the project instructions.</li>
+      <li>Start a new conversation inside the project. Claude will already know how your brain is structured.</li>
+      <li>Say: <em>"I just set up my Applaudé project. Can you check my lists and confirm you can see them?"</em></li>
+    </ol>
+
+    <div class="callout note">
+      <strong>The four starter lists</strong>
+      Create these in Reminders before your first session: <strong>Captures</strong>, <strong>Knowledge</strong>, <strong>Goals</strong>, <strong>Projects</strong>. That's all you need to start. Claude will refer to them as <strong>Captures 📥</strong>, <strong>Knowledge 🪎</strong>, <strong>Goals 🎯</strong>, and <strong>Projects 🚧</strong> in conversation — the emoji is for warmth in chat; the plain name is what Reminders stores.
     </div>
   </section>
 
@@ -823,11 +912,11 @@
   <section class="sec">
     <span class="sec-num">№ 03 <span class="dot">·</span> Desktop</span>
     <h2 class="sec-title">Claude on your Mac.</h2>
-    <p class="sec-deck">The Mac app needs a small install — about fifteen minutes if you're comfortable in Terminal. Same setup also works for Cowork.</p>
+    <p class="sec-deck">The Mac app needs a small install — about fifteen minutes if you're comfortable in Terminal.</p>
 
     <div class="callout warn">
       <strong>Before you start</strong>
-      The desktop install needs Terminal — the command-line app on your Mac. If "Terminal" makes you nervous, just stay on Claude.ai. You'll get most of the way there without it.
+      This path requires Terminal — the command-line app on your Mac. If that makes you nervous, stay on Claude.ai. You'll get most of the experience without it.
     </div>
 
     <div class="options">
@@ -839,33 +928,33 @@
       <div class="opt">
         <span class="opt-label">Option B</span>
         <h4>Push through</h4>
-        <p>Follow the steps below. You'll unlock Desktop, Cowork, and the foundation for Claude Code.</p>
+        <p>Follow the steps below. You'll unlock Desktop and lay the groundwork for Claude Code too.</p>
       </div>
     </div>
 
     <div class="prose" style="margin-top: 40px;">
-      <p>The Mac app uses a community-built bridge called <strong>mcp-server-apple-events</strong>, made by a developer named FradSer. It's the same code that Cowork and Claude Code use, so one install covers all three. It's open source.</p>
+      <p>Claude Desktop on macOS doesn't have native Reminders access. It needs a small bridge — a community-built open-source server called <strong>mcp-server-apple-events</strong> that talks to EventKit, the same framework Apple's own apps use. One install covers Desktop and Claude Code both.</p>
     </div>
 
     <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install the bridge</h3>
     <ol class="steps">
-      <li>Install <strong>Claude Desktop</strong> from <a href="https://claude.ai/download">claude.ai/download</a>.</li>
+      <li>Download <strong>Claude Desktop</strong> from <a href="https://claude.ai/download">claude.ai/download</a> and install it.</li>
       <li>Open Terminal (Applications → Utilities → Terminal).</li>
-      <li>Find your configuration file:
+      <li>Open your Claude config folder:
 <pre class="code">open ~/Library/Application\ Support/Claude/</pre></li>
-      <li>Open <code>claude_desktop_config.json</code> in TextEdit (or any text editor). If the file doesn't exist, create it.</li>
-      <li>Paste this in (merge it with anything that's already there):
+      <li>Open <code>claude_desktop_config.json</code> in a text editor. If the file doesn't exist, create it.</li>
+      <li>Paste this configuration (merge with anything already there):
 <pre class="code json">{
   "mcpServers": {
-    "apple-reminders": {
+    "apple-events": {
       "command": "npx",
       "args": ["-y", "mcp-server-apple-events"]
     }
   }
 }</pre></li>
-      <li>Save the file. Quit Claude Desktop completely. Reopen it.</li>
-      <li>The first time Claude tries to read Reminders, macOS will pop up a permission dialog. Click <strong>OK</strong>.</li>
-      <li>Test: ask <em>"List my Reminders lists."</em></li>
+      <li>Save the file. Quit Claude Desktop completely (⌘Q, not just close the window). Reopen it.</li>
+      <li>The first time Claude reads Reminders, macOS will show a permission dialog. Click <strong>OK</strong>.</li>
+      <li>Test: ask <em>"List my Reminders lists."</em> — you should see your four starter lists come back.</li>
     </ol>
 
     <div class="gif-slot">
@@ -876,11 +965,8 @@
 
     <div class="callout note">
       <strong>If something goes wrong</strong>
-      Open <strong>System Settings → Privacy &amp; Security → Reminders</strong> and make sure Claude is in the list with the toggle on. About nine out of ten "it doesn't work" problems are a missed permission.
+      Open <strong>System Settings → Privacy &amp; Security → Reminders</strong> and confirm Claude is in the list with the toggle on. That's the fix for most problems.
     </div>
-
-    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Cowork</h3>
-    <p class="prose">If you have Cowork, the setup is identical — Cowork reads the same config file. Once Desktop is working, Cowork works too.</p>
   </section>
 
   <hr class="hairline" style="margin-top: 96px;">
@@ -889,36 +975,108 @@
   <section class="sec">
     <span class="sec-num">№ 04 <span class="dot">·</span> Claude Code</span>
     <h2 class="sec-title">For developers.</h2>
-    <p class="sec-deck">Claude Code is for people who build with code. It can read and write files on your Mac, run shell commands, and do work the other surfaces can't.</p>
-
-    <div class="callout warn">
-      <strong>If you're not a developer</strong>
-      You don't need this. The first three surfaces cover everything most people need. Skip ahead.
-    </div>
+    <p class="sec-deck">Claude Code can read and write files on your Mac, run shell commands, and do work the other surfaces can't. If you don't write code, skip this — you don't need it.</p>
 
     <div class="prose">
-      <p>Most of the install is already done — Claude Code uses the same MCP bridge you installed for Desktop. You just point it at the Applaudé skill folder.</p>
+      <p>Most of the setup is already done if you completed Desktop. Claude Code uses the same MCP bridge — you just point it at the Applaudé skill folder so Claude loads the operating manual automatically in every session.</p>
     </div>
 
     <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install</h3>
     <ol class="steps">
-      <li>Install Claude Code:
+      <li>Install Claude Code via npm:
 <pre class="code">npm install -g @anthropic-ai/claude-code</pre></li>
-      <li>Clone the Applaudé skill into your Claude Code skills folder:
+      <li>Clone the Applaudé skill into your Claude skills folder:
 <pre class="code">git clone https://github.com/davekatague/applaude.git \
   ~/.claude/skills/applaude</pre></li>
-      <li>The Apple Events MCP is already available from your Desktop install. No extra config needed.</li>
-      <li>Start Claude Code and try: <em>"list my Reminders lists"</em> or <em>"capture this idea"</em>.</li>
+      <li>The Apple Events MCP bridge carries over from your Desktop install. No extra config needed.</li>
+      <li>Start Claude Code in a new terminal. Say <em>"list my Reminders lists"</em> to verify. Then try: <em>"capture this idea: [anything]."</em></li>
     </ol>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== WHAT TO SAY ============== -->
+  <section class="sec">
+    <span class="sec-num">05 <span class="dot">·</span> What to say</span>
+    <h2 class="sec-title">Your first <em>five captures.</em></h2>
+    <p class="sec-deck">The most common question after setup: "what do I actually put in here?" Start with whatever is on your mind right now. Here are five shapes that work well.</p>
+
+    <div class="capture-grid">
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Fleeting thought</div>
+        <div class="cc-say">"Capture this idea: what if pricing was based on outcomes, not hours?"</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          Captures 📥. No structure needed. Just in. You'll decide what to do with it later.
+        </div>
+      </div>
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Person you met</div>
+        <div class="cc-say">"I just met Alex Nguyen, a product manager at Stripe. Add her to People and note we talked about AI pricing models."</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          People 🧱 (if you've created it) or Knowledge 🪎. Linked to context about when you met.
+        </div>
+      </div>
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Lesson learned</div>
+        <div class="cc-say">"Log a lesson: I always underestimate API integration time. Double the estimate before committing."</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          Knowledge 🪎 as a <em>lesson.atomic</em>. First-class in Applaudé — linked lessons keep you from repeating mistakes.
+        </div>
+      </div>
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Goal</div>
+        <div class="cc-say">"New goal: finish the first draft of my essay by the end of June."</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          Goals 🎯. With a clear success condition. Ask Claude later: "am I on track with my goals?"
+        </div>
+      </div>
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Decision you made</div>
+        <div class="cc-say">"I decided to turn down that consulting offer. Reasons: scope kept expanding, rate didn't move. Log that."</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          Knowledge 🪎 as a <em>decision.atomic</em>. Rationale preserved. Future-you can look back and understand why.
+        </div>
+      </div>
+
+      <div class="capture-card">
+        <div class="cc-header"><span class="dot"></span>Something you read</div>
+        <div class="cc-say">"I just read that the most important skill in the next decade is knowing what to delegate to AI. Save that as a knowledge atom."</div>
+        <div class="cc-result">
+          <strong>Goes to →</strong>
+          Knowledge 🪎. Citable, retrievable, linkable to related ideas you'll add later.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout note">
+      <strong>The capture habit</strong>
+      Don't try to structure while you capture. Rough goes into Captures 📥. On a weekly pass, you move the good stuff into Knowledge 🪎 or Projects 🚧. Trying to be perfect at capture kills the habit. Get it in. Structure later.
+    </div>
+
+    <div class="callout" style="margin-top: 16px;">
+      <strong>Seed your brain fast</strong>
+      The repo includes a <a href="https://github.com/davekatague/applaude/blob/main/references/starter-kit.md" style="color: var(--accent);">starter kit</a> — five paste-ready atoms that give your system a structure from day one. Ask Claude: <em>"Can you create my starter atoms from the starter-kit file?"</em>
+    </div>
   </section>
 
   <hr class="hairline" style="margin-top: 96px;">
 
   <!-- ============== MATRIX ============== -->
   <section class="sec">
-    <span class="sec-num">05 <span class="dot">·</span> What works where</span>
+    <span class="sec-num">06 <span class="dot">·</span> What works where</span>
     <h2 class="sec-title">A quick reference.</h2>
-    <p class="sec-deck">Each surface can do slightly different things. This is the cheat sheet — bookmark it.</p>
+    <p class="sec-deck">Each surface can do slightly different things. This is the cheat sheet.</p>
 
     <div class="matrix-wrap">
       <table class="matrix">
@@ -947,6 +1105,13 @@
             <td><span class="yes">✓</span></td>
           </tr>
           <tr>
+            <td>Persistent project context</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="no">—</span></td>
+          </tr>
+          <tr>
             <td>Update Claude's memory</td>
             <td><span class="no">—</span></td>
             <td><span class="yes">✓</span></td>
@@ -955,17 +1120,10 @@
           </tr>
           <tr>
             <td>Upload files</td>
-            <td><span class="partial">chat / project *1</span></td>
+            <td><span class="partial">chat only *1</span></td>
             <td><span class="yes">✓</span></td>
             <td><span class="yes">✓</span></td>
             <td><span class="yes">✓</span></td>
-          </tr>
-          <tr>
-            <td>Project knowledge (persistent context)</td>
-            <td><span class="yes">✓</span></td>
-            <td><span class="yes">✓</span></td>
-            <td><span class="yes">✓</span></td>
-            <td><span class="no">—</span></td>
           </tr>
           <tr>
             <td>Local file system</td>
@@ -975,39 +1133,61 @@
             <td><span class="yes">✓</span></td>
           </tr>
           <tr>
-            <td>Apple Notes</td>
-            <td><span class="no">—</span></td>
-            <td><span class="no">—</span></td>
-            <td><span class="partial">sometimes *2</span></td>
-            <td><span class="partial">limited</span></td>
-          </tr>
-          <tr>
-            <td>Shell / commands</td>
+            <td>Shell / terminal commands</td>
             <td><span class="no">—</span></td>
             <td><span class="no">—</span></td>
             <td><span class="no">—</span></td>
             <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Voice capture</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="footnotes">
-      <p><strong>*1</strong> &nbsp; On mobile, turn voice mode off to upload a file, or put it in a Project for persistent access.</p>
-      <p><strong>*2</strong> &nbsp; The Notes integration on Desktop is unreliable. Treat it as nice-to-have, not load-bearing.</p>
+      <p><strong>*1</strong> &nbsp; On mobile, switch to chat mode (turn off voice) to upload a file. Files uploaded in a Project are available in voice mode too.</p>
     </div>
   </section>
 
-  <!-- ============== RESULT — KNOWLEDGE GRAPH REVEAL ============== -->
+  <!-- ============== RESULT — WHAT YOU'LL HAVE ============== -->
   <section class="sec result-block">
-    <div class="result-eyebrow">06 <span style="color: var(--accent); margin: 0 8px;">·</span> What it looks like when it's working</div>
-    <h3>After a few weeks, <em>this is what you have.</em></h3>
-    <p class="result-deck">Every idea, person, project, decision — linked. You can search it. You can talk to it. It only gets richer.</p>
+    <div class="result-eyebrow">07 <span style="color: var(--accent); margin: 0 8px;">·</span> What it feels like after a few weeks</div>
+    <h3>Every idea you had. <em>Still there.</em></h3>
+    <p class="result-deck">This is the part that surprises people. Not the technology — just the feeling of it.</p>
+
+    <ul class="after-list">
+      <li>
+        <span class="glyph">🗣</span>
+        <strong>Mid-drive, you remember something.</strong> You say it out loud. It's in your Captures list before you park.
+      </li>
+      <li>
+        <span class="glyph">🔗</span>
+        <strong>A month later, you mention a related topic.</strong> Claude surfaces the earlier thought, links the two, asks if they're connected. They are.
+      </li>
+      <li>
+        <span class="glyph">🧠</span>
+        <strong>You ask "what do I know about X?"</strong> You get back your own thinking — the decisions you made, the lessons you logged, the people who showed up in that context.
+      </li>
+      <li>
+        <span class="glyph">📖</span>
+        <strong>You review your goals.</strong> They're exactly as you left them. The reasoning is intact. Nothing got lost between conversations.
+      </li>
+      <li>
+        <span class="glyph">🌱</span>
+        <strong>It only gets richer.</strong> Every capture is a thread you can pull on later. The brain gets more useful the more you use it.
+      </li>
+    </ul>
 
     <div class="graph-slot">
       <span class="icon">◉</span>
-      Knowledge graph screenshot / GIF
-      <div style="text-transform: none; letter-spacing: 0.02em; color: var(--ink-muted); font-style: italic; margin-top: 8px;">Drop the Applaudé graph GIF here</div>
+      Knowledge graph — your brain visualised
+      <div style="text-transform: none; letter-spacing: 0.02em; color: var(--ink-muted); font-style: italic; margin-top: 8px;">Screenshot coming once the graph tool ships in v0.5</div>
     </div>
   </section>
 
@@ -1025,15 +1205,19 @@
   <footer class="colophon">
     <div class="item">
       <span class="label">Version</span>
-      <span class="val">v0 · Schema v1.2</span>
+      <span class="val">v0 · Schema v1.3</span>
     </div>
     <div class="item">
       <span class="label">License</span>
-      <span class="val">Open source</span>
+      <span class="val">MIT · Open source</span>
     </div>
     <div class="item">
       <span class="label">Updated</span>
       <span class="val">May 2026</span>
+    </div>
+    <div class="item">
+      <span class="label">Source</span>
+      <span class="val"><a href="https://github.com/davekatague/applaude" style="color: var(--ink-muted); text-decoration: underline; text-underline-offset: 3px;">github.com/davekatague/applaude</a></span>
     </div>
   </footer>
 
