@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applaudé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Colors */
+    --paper: #f4ede2;
+    --paper-2: #ebe3d4;
+    --ink: #0f0e0c;
+    --ink-soft: #2a2722;
+    --ink-muted: #6a6359;
+    --ink-faint: #9a9286;
+    --rule: #d8cdb8;
+    --accent: #cc785c;
+    --warn: #8a5a00;
+    --ok: #2d6a2d;
+    --bad: #8a2424;
+
+    /* Typography */
+    --font-display: 'Source Serif Pro', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    /* Type scale */
+    --base-size: 16px;
+    --scale-h1: 96px;
+    --scale-h2: 49px;
+    --scale-deck: 24px;
+
+    /* Weights & rhythm */
+    --weight-display: 500;
+    --lh-display: 0.95;
+    --lh-body: 1.7;
+    --tracking-display: -0.05em;
+
+    /* Spacing */
+    --space-section: 96px;
+    --space-block: 32px;
+    --max-width: 1180px;
+    --content-width: 720px;
+    --margin-col: 200px;
+    --gap-grid: 40px;
+    --padding-page: 60px;
+
+    /* Effects */
+    --grain-opacity: 0.5;
+    --border-radius: 2px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: var(--lh-body);
+    font-size: var(--base-size);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: var(--grain-opacity);
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .page {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--padding-page);
+  }
+
+  /* ============== HEADER ============== */
+  .top {
+    padding: 8px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .top .mark { color: var(--ink); font-weight: 500; }
+
+  /* ============== HERO ============== */
+  .hero {
+    padding: 80px 0 56px;
+    max-width: 860px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--scale-h1);
+    font-weight: var(--weight-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--tracking-display);
+    color: var(--ink);
+    margin-bottom: 36px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero .deck {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+  .hero .promise {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 580px;
+  }
+  .hero .promise span {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* Hairline rule */
+  .hairline {
+    border: none;
+    height: 1px;
+    background: var(--rule);
+    margin: 0;
+  }
+
+  /* ============== SECTIONS ============== */
+  section.sec { padding-top: var(--space-section); padding-bottom: 8px; }
+
+  .sec-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .sec-num .dot { color: var(--accent); margin: 0 8px; }
+
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: var(--scale-h2);
+    font-weight: var(--weight-display);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-display);
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .sec-title em { font-style: italic; font-weight: 400; }
+
+  .sec-deck {
+    font-family: var(--font-body);
+    font-size: 19px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  /* ============== PROSE ============== */
+  .prose {
+    font-family: var(--font-body);
+    font-size: var(--base-size);
+    line-height: var(--lh-body);
+    color: var(--ink-soft);
+    max-width: var(--content-width);
+  }
+  .prose p { margin-bottom: 18px; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose em { color: var(--ink); font-style: italic; }
+  .prose code {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    background: rgba(15, 14, 12, 0.06);
+    padding: 2px 6px;
+    border-radius: var(--border-radius);
+    color: var(--ink);
+  }
+  .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ============== QUICK WIN BLOCK ============== */
+  .quickwin {
+    background: var(--paper-2);
+    padding: 36px 40px;
+    margin: 40px 0;
+    border-left: 3px solid var(--accent);
+  }
+  .quickwin .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .quickwin h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .quickwin p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    max-width: 580px;
+  }
+  .quickwin ol {
+    list-style: none;
+    counter-reset: q;
+    margin-top: 18px;
+  }
+  .quickwin ol li {
+    counter-increment: q;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  .quickwin ol li::before {
+    content: counter(q);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .quickwin ol li code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--paper);
+    padding: 2px 6px;
+    border-radius: var(--border-radius);
+    color: var(--ink);
+  }
+
+  /* ============== PICKER GRID ============== */
+  .picker-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 40px 0;
+  }
+  .picker-card {
+    background: var(--paper-2);
+    padding: 28px 24px;
+    transition: all 0.2s ease;
+    border-radius: var(--border-radius);
+  }
+  .picker-card:hover {
+    background: var(--paper);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(15, 14, 12, 0.06);
+  }
+  .picker-card .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.18em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .picker-card .num .pill {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .picker-card .name {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+  }
+  .picker-card .diff {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .diff.zero, .diff.easy { background: rgba(45, 106, 45, 0.13); color: var(--ok); }
+  .diff.med { background: rgba(138, 90, 0, 0.15); color: var(--warn); }
+  .diff.hard { background: rgba(138, 36, 36, 0.15); color: var(--bad); }
+  .picker-card .desc {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ============== STEPS ============== */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 24px 0 32px;
+    max-width: var(--content-width);
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 20px 0 20px 56px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    width: 32px;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li strong { color: var(--ink); font-weight: 600; }
+  .steps li code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: rgba(15, 14, 12, 0.06);
+    padding: 2px 6px;
+    border-radius: var(--border-radius);
+    color: var(--ink);
+  }
+
+  /* GIF placeholder */
+  .gif-slot {
+    margin: 16px 0 24px;
+    padding: 24px;
+    background: var(--paper-2);
+    border: 1px dashed var(--rule);
+    border-radius: var(--border-radius);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .gif-slot .icon {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--ink-muted);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .gif-slot .caption {
+    margin-top: 6px;
+    color: var(--ink-muted);
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============== CODE BLOCK ============== */
+  pre.code {
+    background: var(--ink);
+    color: #e8dfd0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.65;
+    padding: 22px 26px 22px 42px;
+    margin: 22px 0;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    position: relative;
+    max-width: var(--content-width);
+  }
+  pre.code::before {
+    content: "$";
+    position: absolute;
+    top: 22px;
+    left: 18px;
+    color: var(--accent);
+    font-size: 12px;
+  }
+  pre.code.json::before { content: ""; }
+  pre.code .c { color: #8a8270; font-style: italic; }
+  pre.code .k { color: #c8a05a; }
+  pre.code .s { color: #9bbf80; }
+
+  /* ============== CALLOUTS ============== */
+  .callout {
+    background: rgba(204, 120, 92, 0.08);
+    padding: 22px 28px;
+    margin: 24px 0;
+    border-radius: var(--border-radius);
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: var(--content-width);
+  }
+  .callout.warn { background: rgba(138, 90, 0, 0.10); }
+  .callout.note { background: rgba(15, 14, 12, 0.04); }
+  .callout strong {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .callout.warn strong { color: var(--warn); }
+  .callout.note strong { color: var(--ink-muted); }
+  .callout code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: rgba(15, 14, 12, 0.06);
+    padding: 2px 6px;
+    border-radius: var(--border-radius);
+  }
+
+  /* Two-option pattern */
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+    max-width: var(--content-width);
+  }
+  .opt {
+    background: var(--paper-2);
+    padding: 24px 24px 20px;
+    border-radius: var(--border-radius);
+  }
+  .opt .opt-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .opt h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .opt p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ============== MATRIX ============== */
+  .matrix-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+  }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: 14px;
+    background: var(--paper-2);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  table.matrix thead {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  table.matrix th {
+    padding: 16px 14px;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  table.matrix th:not(:first-child) { text-align: center; }
+  table.matrix td {
+    padding: 14px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  table.matrix td:first-child {
+    text-align: left;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  table.matrix tr:last-child td { border-bottom: none; }
+  .yes { color: var(--ok); font-weight: 600; font-size: 16px; }
+  .no { color: var(--ink-faint); font-size: 16px; }
+  .partial { color: var(--warn); font-size: 12px; font-weight: 500; }
+
+  .footnotes {
+    margin-top: 16px;
+    padding-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: var(--content-width);
+  }
+  .footnotes p { margin-bottom: 4px; }
+  .footnotes strong { color: var(--accent); }
+
+  /* ============== RESULT BLOCK (knowledge graph reveal) ============== */
+  .result-block {
+    margin: 56px 0 0;
+    padding: 48px 0;
+  }
+  .result-block .result-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .result-block h3 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    max-width: 720px;
+  }
+  .result-block h3 em { font-style: italic; font-weight: 400; }
+  .result-block .result-deck {
+    font-size: 17px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-bottom: 32px;
+    max-width: 600px;
+  }
+  .graph-slot {
+    background: var(--paper-2);
+    padding: 80px 40px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .graph-slot .icon {
+    font-size: 32px;
+    color: var(--ink-muted);
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: 0;
+  }
+
+  /* ============== TRIBUTE ============== */
+  .tribute {
+    padding: 56px 0 32px;
+    border-top: 1px solid var(--rule);
+    margin-top: 96px;
+  }
+  .tribute .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+  .tribute h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 18px;
+    letter-spacing: -0.02em;
+  }
+  .tribute p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    max-width: 620px;
+    margin-bottom: 12px;
+  }
+  .tribute a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ============== COLOPHON ============== */
+  .colophon {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .colophon .item .label { display: block; color: var(--ink-faint); font-size: 9px; margin-bottom: 4px; }
+  .colophon .item .val { color: var(--ink); font-weight: 500; }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 900px) {
+    :root {
+      --padding-page: 32px;
+      --space-section: 64px;
+    }
+    .hero { padding: 56px 0 32px; }
+    .hero h1 { font-size: 64px; }
+    .hero .deck { font-size: 24px; }
+    .sec-title { font-size: 36px; }
+    .picker-grid { grid-template-columns: 1fr 1fr; }
+    .options { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 48px; }
+    .hero .deck { font-size: 20px; }
+    .sec-title { font-size: 30px; }
+    .picker-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============== HEADER ============== -->
+  <div class="top">
+    <div class="mark">Applaudé</div>
+    <div>v0 · May 2026</div>
+  </div>
+
+  <!-- ============== HERO ============== -->
+  <header class="hero">
+    <h1>Think out loud. <em>Find it later.</em></h1>
+    <div class="deck">Talk to it. Everywhere.</div>
+    <p class="promise">
+      <span>Apple Reminders, but you can speak to it.</span>
+      <span>Syncs across every device you own.</span>
+      <span>Free.</span>
+    </p>
+  </header>
+
+  <hr class="hairline">
+
+  <!-- ============== QUICK WIN ============== -->
+  <section class="sec">
+    <span class="sec-num">00 <span class="dot">·</span> Start here</span>
+    <h2 class="sec-title">Sixty seconds <em>to your first win.</em></h2>
+    <p class="sec-deck">If this works, everything else will too. If it doesn't, fix this first.</p>
+
+    <div class="quickwin">
+      <div class="label">The test</div>
+      <h3>Add a reminder by voice. See it on every device.</h3>
+      <p>You don't need to install anything for this. You're confirming the foundation works.</p>
+      <ol>
+        <li>Open the Claude app on your iPhone. Tap voice mode.</li>
+        <li>Say: <em>"Add a reminder to buy milk."</em></li>
+        <li>Open the Reminders app on the same phone. The reminder should be there.</li>
+        <li>Open Reminders on your Mac or iPad. It should appear within a minute.</li>
+      </ol>
+      <p style="font-size: 14px; color: var(--ink-muted); margin-top: 16px; font-style: italic;">Tip: Applaudé will organise your captures into lists called <strong style="color: var(--ink);">Knowledge 🪎</strong>, <strong style="color: var(--ink);">Ideas 💡</strong>, <strong style="color: var(--ink);">Entities 🧱</strong>, and a few others. The lists already exist in Reminders — you'll see them populate as you use it.</p>
+    </div>
+
+    <div class="callout note">
+      <strong>If it didn't sync</strong>
+      Settings → your name → iCloud → make sure Reminders is on, on every device. Most "Applaudé isn't working" problems are actually iCloud not turned on somewhere.
+    </div>
+  </section>
+
+  <!-- ============== THE FOUR DOORS ============== -->
+  <section class="sec">
+    <span class="sec-num">01 <span class="dot">·</span> The four ways in</span>
+    <h2 class="sec-title">Four doorways. <em>Pick one.</em></h2>
+    <p class="sec-deck">Most people only need the first two. Each one builds on the same foundation — you can add the others later, never lose anything along the way.</p>
+
+    <div class="picker-grid">
+      <div class="picker-card">
+        <div class="num"><span class="pill">№ 01</span></div>
+        <div class="name">Mobile</div>
+        <span class="diff zero">Already works</span>
+        <p class="desc">Voice, chat, and projects on your phone. Nothing to install.</p>
+      </div>
+      <div class="picker-card">
+        <div class="num"><span class="pill">№ 02</span></div>
+        <div class="name">Browser</div>
+        <span class="diff easy">5 minutes</span>
+        <p class="desc">Claude.ai with the Apple Reminders connector turned on.</p>
+      </div>
+      <div class="picker-card">
+        <div class="num"><span class="pill">№ 03</span></div>
+        <div class="name">Desktop</div>
+        <span class="diff med">15 minutes</span>
+        <p class="desc">Mac app with a small Terminal install. Also unlocks Cowork.</p>
+      </div>
+      <div class="picker-card">
+        <div class="num"><span class="pill">№ 04</span></div>
+        <div class="name">Claude Code</div>
+        <span class="diff hard">For developers</span>
+        <p class="desc">Shell, files, full read-write power. Only if you build with code.</p>
+      </div>
+    </div>
+
+    <div class="callout note">
+      <strong>Starter pack</strong>
+      Phone for capture. Browser for everything else. That's all most people need. Add Desktop or Code only when something specific is missing.
+    </div>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== PATH 01 — MOBILE ============== -->
+  <section class="sec">
+    <span class="sec-num">№ 01 <span class="dot">·</span> Mobile</span>
+    <h2 class="sec-title">Already on your phone.</h2>
+    <p class="sec-deck">The Claude app on iPhone and iPad has three modes — voice, chat, and projects. All three talk to Reminders. Nothing to install.</p>
+
+    <div class="prose">
+      <p><strong>Voice.</strong> Tap the voice button. Speak. Reminders just works — Claude on iOS uses Apple's own EventKit, the same thing Siri uses. No connector to turn on.</p>
+      <p><strong>Chat.</strong> Turn voice off and you can type, paste, and upload files. Switch voice back on and the conversation continues with the file still in context.</p>
+      <p><strong>Projects.</strong> Inside a project on mobile, you can upload knowledge files once and every voice or chat conversation in that project can use them. This is where the system gets powerful.</p>
+    </div>
+
+    <div class="gif-slot">
+      <span class="icon">▶︎</span>
+      Screen recording — voice mode capturing a reminder
+      <div class="caption">Drop GIF here when recorded</div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Try it</h3>
+    <ol class="steps">
+      <li>Open the Claude app. Tap the voice button.</li>
+      <li>Say: <em>"Add an idea: a children's book about voice-first AI."</em></li>
+      <li>Open Reminders. The idea is captured in the <strong>Ideas</strong> list — Claude will speak about it as <strong>Ideas 💡</strong>.</li>
+      <li>Try chat mode next. Paste a paragraph and ask Claude to capture it as an idea. Same place, same elegance.</li>
+    </ol>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== PATH 02 — BROWSER ============== -->
+  <section class="sec">
+    <span class="sec-num">№ 02 <span class="dot">·</span> Browser</span>
+    <h2 class="sec-title">Claude.ai. <em>One click to connect.</em></h2>
+    <p class="sec-deck">Same Reminders, now in your browser. Five minutes. The connector is hosted by Anthropic, so there's nothing to install on your computer.</p>
+
+    <div class="prose">
+      <p>This is the workhorse surface. Use it for longer thinking, file uploads, planning, and anything that benefits from a wider screen than your phone.</p>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Turn on the connector</h3>
+    <ol class="steps">
+      <li>Go to <a href="https://claude.ai">claude.ai</a> and sign in.</li>
+      <li>Open your profile menu → <strong>Connectors</strong>.</li>
+      <li>Find <strong>Apple Reminders</strong> in the list and click <strong>Connect</strong>.</li>
+      <li>Approve the permission prompt. Allow access to your Reminders.</li>
+      <li>Open a new chat. Type: <em>"List my Reminders lists."</em> You should see them.</li>
+    </ol>
+
+    <div class="gif-slot">
+      <span class="icon">▶︎</span>
+      Screen recording — turning on the connector
+      <div class="caption">Drop GIF here when recorded</div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install the Applaudé skill</h3>
+    <p class="prose" style="margin-bottom: 18px;">The skill teaches Claude how to structure information — so a person you mention becomes a linked entity, not just plain text. Five steps.</p>
+    <ol class="steps">
+      <li>In Claude.ai, create a new <strong>Project</strong>. Call it <code>Applaudé</code>.</li>
+      <li>Upload <code>SKILL.md</code> from the repo to project knowledge.</li>
+      <li>Paste the project instructions from <code>bridges/claudeai.md</code>.</li>
+      <li>Start a new chat inside that project.</li>
+    <div class="callout note" style="margin-top: 32px;">
+      <strong>A small elegance</strong>
+      Your Reminders lists are named in plain English (<code>Knowledge</code>, <code>Entities</code>, <code>Projects</code>) so they work across every Claude surface. When Claude talks about them, you'll see the decorated versions — <strong>Knowledge 🪎</strong>, <strong>Entities 🧱</strong>, <strong>Projects 🚧</strong>. Warmth in the experience, portability in the storage. Nobody notices the seam.
+    </div>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== PATH 03 — DESKTOP ============== -->
+  <section class="sec">
+    <span class="sec-num">№ 03 <span class="dot">·</span> Desktop</span>
+    <h2 class="sec-title">Claude on your Mac.</h2>
+    <p class="sec-deck">The Mac app needs a small install — about fifteen minutes if you're comfortable in Terminal. Same setup also works for Cowork.</p>
+
+    <div class="callout warn">
+      <strong>Before you start</strong>
+      The desktop install needs Terminal — the command-line app on your Mac. If "Terminal" makes you nervous, just stay on Claude.ai. You'll get most of the way there without it.
+    </div>
+
+    <div class="options">
+      <div class="opt">
+        <span class="opt-label">Option A</span>
+        <h4>Stay on browser</h4>
+        <p>Skip this section. Claude.ai gives you 90% of the experience with zero Terminal time.</p>
+      </div>
+      <div class="opt">
+        <span class="opt-label">Option B</span>
+        <h4>Push through</h4>
+        <p>Follow the steps below. You'll unlock Desktop, Cowork, and the foundation for Claude Code.</p>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top: 40px;">
+      <p>The Mac app uses a community-built bridge called <strong>mcp-server-apple-events</strong>, made by a developer named FradSer. It's the same code that Cowork and Claude Code use, so one install covers all three. It's open source.</p>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install the bridge</h3>
+    <ol class="steps">
+      <li>Install <strong>Claude Desktop</strong> from <a href="https://claude.ai/download">claude.ai/download</a>.</li>
+      <li>Open Terminal (Applications → Utilities → Terminal).</li>
+      <li>Find your configuration file:
+<pre class="code">open ~/Library/Application\ Support/Claude/</pre></li>
+      <li>Open <code>claude_desktop_config.json</code> in TextEdit (or any text editor). If the file doesn't exist, create it.</li>
+      <li>Paste this in (merge it with anything that's already there):
+<pre class="code json">{
+  "mcpServers": {
+    "apple-reminders": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-apple-events"]
+    }
+  }
+}</pre></li>
+      <li>Save the file. Quit Claude Desktop completely. Reopen it.</li>
+      <li>The first time Claude tries to read Reminders, macOS will pop up a permission dialog. Click <strong>OK</strong>.</li>
+      <li>Test: ask <em>"List my Reminders lists."</em></li>
+    </ol>
+
+    <div class="gif-slot">
+      <span class="icon">▶︎</span>
+      Screen recording — editing the config file
+      <div class="caption">Drop GIF here when recorded</div>
+    </div>
+
+    <div class="callout note">
+      <strong>If something goes wrong</strong>
+      Open <strong>System Settings → Privacy &amp; Security → Reminders</strong> and make sure Claude is in the list with the toggle on. About nine out of ten "it doesn't work" problems are a missed permission.
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Cowork</h3>
+    <p class="prose">If you have Cowork, the setup is identical — Cowork reads the same config file. Once Desktop is working, Cowork works too.</p>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== PATH 04 — CLAUDE CODE ============== -->
+  <section class="sec">
+    <span class="sec-num">№ 04 <span class="dot">·</span> Claude Code</span>
+    <h2 class="sec-title">For developers.</h2>
+    <p class="sec-deck">Claude Code is for people who build with code. It can read and write files on your Mac, run shell commands, and do work the other surfaces can't.</p>
+
+    <div class="callout warn">
+      <strong>If you're not a developer</strong>
+      You don't need this. The first three surfaces cover everything most people need. Skip ahead.
+    </div>
+
+    <div class="prose">
+      <p>Most of the install is already done — Claude Code uses the same MCP bridge you installed for Desktop. You just point it at the Applaudé skill folder.</p>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 500; margin: 36px 0 16px; color: var(--ink); letter-spacing: -0.02em;">Install</h3>
+    <ol class="steps">
+      <li>Install Claude Code:
+<pre class="code">npm install -g @anthropic-ai/claude-code</pre></li>
+      <li>Clone the Applaudé skill into your Claude Code skills folder:
+<pre class="code">git clone https://github.com/davekatague/applaude.git \
+  ~/.claude/skills/applaude</pre></li>
+      <li>The Apple Events MCP is already available from your Desktop install. No extra config needed.</li>
+      <li>Start Claude Code and try: <em>"list my Reminders lists"</em> or <em>"capture this idea"</em>.</li>
+    </ol>
+  </section>
+
+  <hr class="hairline" style="margin-top: 96px;">
+
+  <!-- ============== MATRIX ============== -->
+  <section class="sec">
+    <span class="sec-num">05 <span class="dot">·</span> What works where</span>
+    <h2 class="sec-title">A quick reference.</h2>
+    <p class="sec-deck">Each surface can do slightly different things. This is the cheat sheet — bookmark it.</p>
+
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Mobile</th>
+            <th>Browser</th>
+            <th>Desktop</th>
+            <th>Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Read Reminders</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Write Reminders</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Update Claude's memory</td>
+            <td><span class="no">—</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="no">—</span></td>
+          </tr>
+          <tr>
+            <td>Upload files</td>
+            <td><span class="partial">chat / project *1</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Project knowledge (persistent context)</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="no">—</span></td>
+          </tr>
+          <tr>
+            <td>Local file system</td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="partial">limited</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>Apple Notes</td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="partial">sometimes *2</span></td>
+            <td><span class="partial">limited</span></td>
+          </tr>
+          <tr>
+            <td>Shell / commands</td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="no">—</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footnotes">
+      <p><strong>*1</strong> &nbsp; On mobile, turn voice mode off to upload a file, or put it in a Project for persistent access.</p>
+      <p><strong>*2</strong> &nbsp; The Notes integration on Desktop is unreliable. Treat it as nice-to-have, not load-bearing.</p>
+    </div>
+  </section>
+
+  <!-- ============== RESULT — KNOWLEDGE GRAPH REVEAL ============== -->
+  <section class="sec result-block">
+    <div class="result-eyebrow">06 <span style="color: var(--accent); margin: 0 8px;">·</span> What it looks like when it's working</div>
+    <h3>After a few weeks, <em>this is what you have.</em></h3>
+    <p class="result-deck">Every idea, person, project, decision — linked. You can search it. You can talk to it. It only gets richer.</p>
+
+    <div class="graph-slot">
+      <span class="icon">◉</span>
+      Knowledge graph screenshot / GIF
+      <div style="text-transform: none; letter-spacing: 0.02em; color: var(--ink-muted); font-style: italic; margin-top: 8px;">Drop the Applaudé graph GIF here</div>
+    </div>
+  </section>
+
+  <!-- ============== TRIBUTE ============== -->
+  <section class="tribute">
+    <div class="label">Where this came from</div>
+    <h3>Standing on shoulders.</h3>
+    <p>Applaudé wouldn't exist without two people who got there first.</p>
+    <p><strong><a href="https://karpathy.ai">Andrej Karpathy</a></strong> built a personal wiki that showed what it looks like to organise knowledge for reading. Click a link, follow a thought, learn something. Beautiful and clean.</p>
+    <p><strong><a href="https://arscontexta.com">Arscontexta</a></strong> took the same idea and asked: what if knowledge was organised for an agent to <em>think</em> with? Structured, linked, machine-readable.</p>
+    <p>Applaudé is the third step: knowledge organised so you can <em>use it in real life</em> — mid-drive, mid-call, mid-decision. By voice. On the devices you already own.</p>
+  </section>
+
+  <!-- ============== COLOPHON ============== -->
+  <footer class="colophon">
+    <div class="item">
+      <span class="label">Version</span>
+      <span class="val">v0 · Schema v1.2</span>
+    </div>
+    <div class="item">
+      <span class="label">License</span>
+      <span class="val">Open source</span>
+    </div>
+    <div class="item">
+      <span class="label">Updated</span>
+      <span class="val">May 2026</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
